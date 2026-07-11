@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="workspace">
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">Finance ML Workspace</p>
+      <h1>Credit Card Approval Prediction</h1>
+    </div>
+    <div class="model-chip">
+      <span>Model</span>
+      <strong>{{ best_model }}</strong>
+    </div>
+  </header>
+
+  <form class="approval-form" action="{{ url_for('predict') }}" method="post">
+    <div class="form-grid">
+      <label>
+        Gender
+        <select name="CODE_GENDER">
+          {% for item in options.CODE_GENDER %}
+          <option value="{{ item }}" {% if item == defaults.CODE_GENDER %}selected{% endif %}>{{ item }}</option>
+          {% endfor %}
+        </select>
+      </label>
+
+      <label>
+        Owns car
+        <select name="FLAG_OWN_CAR">
+          {% for item in options.FLAG_OWN_CAR %}
+          <option value="{{ item }}" {% if item == defaults.FLAG_OWN_CAR %}selected{% endif %}>{{ item }}</option>
+          {% endfor %}
+        </select>
+      </label>
+
+      <label>
+        Owns property
+        <select name="FLAG_OWN_REALTY">
+          {% for item in options.FLAG_OWN_REALTY %}
+          <option value="{{ item }}" {% if item == defaults.FLAG_OWN_REALTY %}selected{% endif %}>{{ item }}</option>
+          {% endfor %}
+        </select>
+      </label>
+
+      <label>
+        Children
+        <input name="CNT_CHILDREN" type="number" min="0" max="10" value="{{ defaults.CNT_CHILDREN }}" required>
+      </label>
+
+      <label>
+        Annual income
+        <input name="AMT_INCOME_TOTAL" type="number" min="10000" step="1000" value="{{ defaults.AMT_INCOME_TOTAL }}" required>
+      </label>
+
+      <label>
+        Income type
+        <select name="NAME_INCOME_TYPE">
+          {% for item in options.NAME_INCOME_TYPE %}
+          <option value="{{ item }}" {% if item == defaults.NAME_INCOME_TYPE %}selected{% endif %}>{{ item }}</option>
+          {% endfor %}
+        </select>
+      </label>
+
+      <label>
+        Education
+        <select name="NAME_EDUCATION_TYPE">
+          {% for item in options.NAME_EDUCATION_TYPE %}
+          <option value="{{ item }}" {% if item == defaults.NAME_EDUCATION_TYPE %}selected{% endif %}>{{ item }}</option>
+          {% endfor %}
+        </select>
+      </label>
+
+      <label>
+        Family status
+        <select name="NAME_FAMILY_STATUS">
+          {% for item in options.NAME_FAMILY_STATUS %}
+          <option value="{{ item }}" {% if item == defaults.NAME_FAMILY_STATUS %}selected{% endif %}>{{ item }}</option>
+          {% endfor %}
+        </select>
+      </label>
+
+      <label>
+        Housing type
+        <select name="NAME_HOUSING_TYPE">
+          {% for item in options.NAME_HOUSING_TYPE %}
+          <option value="{{ item }}" {% if item == defaults.NAME_HOUSING_TYPE %}selected{% endif %}>{{ item }}</option>
+          {% endfor %}
+        </select>
+      </label>
+
+      <label>
+        Birth days
+        <input name="DAYS_BIRTH" type="number" max="-1" value="{{ defaults.DAYS_BIRTH }}" required>
+      </label>
+
+      <label>
+        Employment days
+        <input name="DAYS_EMPLOYED" type="number" max="0" value="{{ defaults.DAYS_EMPLOYED }}" required>
+      </label>
+
+      <label>
+        Family members
+        <input name="CNT_FAM_MEMBERS" type="number" min="1" max="20" value="{{ defaults.CNT_FAM_MEMBERS }}" required>
+      </label>
+
+      <label>
+        Occupation
+        <select name="OCCUPATION_TYPE">
+          {% for item in options.OCCUPATION_TYPE %}
+          <option value="{{ item }}" {% if item == defaults.OCCUPATION_TYPE %}selected{% endif %}>{{ item }}</option>
+          {% endfor %}
+        </select>
+      </label>
+
+      <label>
+        Overdue months
+        <input name="MONTHS_WITH_OVERDUE" type="number" min="0" max="24" value="{{ defaults.MONTHS_WITH_OVERDUE }}" required>
+      </label>
+
+      <label>
+        Credit status score
+        <input name="CREDIT_STATUS_SCORE" type="number" min="0" max="5" value="{{ defaults.CREDIT_STATUS_SCORE }}" required>
+      </label>
+    </div>
+
+    <div class="actions">
+      <span>{{ data_source }}</span>
+      <button type="submit">Predict approval</button>
+    </div>
+  </form>
+</section>
+{% endblock %}

@@ -1,0 +1,36 @@
+{
+  "best_model": "XGBoost",
+  "data_source": "generated demo dataset",
+  "training_rows": 1400,
+  "approval_rate": 0.8236,
+  "metrics": [
+    {
+      "model": "XGBoost",
+      "accuracy": 0.9416,
+      "precision": 0.9574,
+      "recall": 0.9724,
+      "f1_score": 0.9648
+    },
+    {
+      "model": "Logistic Regression",
+      "accuracy": 0.9058,
+      "precision": 0.9747,
+      "recall": 0.9094,
+      "f1_score": 0.9409
+    },
+    {
+      "model": "Random Forest",
+      "accuracy": 0.8961,
+      "precision": 0.9784,
+      "recall": 0.8937,
+      "f1_score": 0.9342
+    },
+    {
+      "model": "Decision Tree",
+      "accuracy": 0.8896,
+      "precision": 0.94,
+      "recall": 0.9252,
+      "f1_score": 0.9325
+    }
+  ]
+}

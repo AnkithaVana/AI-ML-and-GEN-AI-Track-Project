@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="workspace result-layout">
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">Prediction Result</p>
+      <h1>{{ result.label }}</h1>
+    </div>
+    <a class="back-link" href="{{ url_for('index') }}">New prediction</a>
+  </header>
+
+  <div class="result-panel {{ 'approved' if result.prediction == 1 else 'rejected' }}">
+    <div>
+      <span>Approval probability</span>
+      <strong>{{ result.approval_probability }}%</strong>
+    </div>
+    <div>
+      <span>Selected model</span>
+      <strong>{{ result.model_name }}</strong>
+    </div>
+  </div>
+
+  <section class="review-table">
+    <h2>Applicant Snapshot</h2>
+    <dl>
+      {% for key, value in applicant.items() %}
+      <div>
+        <dt>{{ key }}</dt>
+        <dd>{{ value }}</dd>
+      </div>
+      {% endfor %}
+    </dl>
+  </section>
+</section>
+{% endblock %}
